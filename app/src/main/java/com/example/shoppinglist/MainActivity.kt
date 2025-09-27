@@ -8,10 +8,13 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.shoppinglist.component.*
+import com.example.shoppinglist.components.ItemInput
+import com.example.shoppinglist.components.SearchInput
+import com.example.shoppinglist.components.ShoppingList
+import com.example.shoppinglist.components.Title
 import com.example.shoppinglist.ui.theme.ShoppingListTheme
-
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,21 +31,23 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
 @Composable
 fun ShoppingListApp() {
     var newItemText by rememberSaveable { mutableStateOf("") }
     var searchQuery by rememberSaveable { mutableStateOf("") }
     val shoppingItems = remember { mutableStateListOf<String>() }
+
     val filteredItems by remember(searchQuery, shoppingItems) {
         derivedStateOf {
             if (searchQuery.isBlank()) {
                 shoppingItems
             } else {
-                shoppingItems.filter { it.contains(searchQuery,
-                    ignoreCase = true) }
+                shoppingItems.filter { it.contains(searchQuery, ignoreCase = true) }
             }
         }
     }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -67,5 +72,14 @@ fun ShoppingListApp() {
         )
         Spacer(modifier = Modifier.height(16.dp))
         ShoppingList(items = filteredItems)
+    }
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun ShoppingListAppPreview() {
+    ShoppingListTheme {
+        ShoppingListApp()
     }
 }
