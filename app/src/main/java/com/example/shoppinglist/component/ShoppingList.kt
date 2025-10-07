@@ -1,4 +1,4 @@
-package com.example.shoppinglist.components
+package com.example.shoppinglist.component
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColorAsState
@@ -42,6 +42,7 @@ fun ShoppingList(items: List<String>) {
         modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = 16.dp),
+
         contentPadding = PaddingValues(vertical = 16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {

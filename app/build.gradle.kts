@@ -1,3 +1,9 @@
+//val Any.animation: kotlin.Any
+
+//val Any.navigation: kotlin.Any
+
+//val org.gradle.accessors.dm.LibrariesForLibs.accompanist: kotlin.Any
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -44,11 +50,21 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
+    implementation(platform(libs.androidx.compose.bom)) // <- Ini mengontrol versi Compose Anda
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation("androidx.compose.material3:material3:1.3.0")
+    implementation(libs.accompanist.navigation.animation)
+
+
+    // Jetpack Navigation for Compose
+    implementation("androidx.navigation:navigation-compose:2.8.0")
+
+    // Animation for transitions between screens. Versi dihapus agar sesuai dengan Compose BOM.
+    implementation("androidx.compose.animation:animation")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
